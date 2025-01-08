@@ -24,13 +24,10 @@ public class UserService {
 
     public List<FetchUsers> getAllUsers() {
 //        List<Users> users = userRepository.findAll();
-//
 //        List<FetchUsers> fetchUsers = new ArrayList<>();
-//
 //        for (Users user : users) {
 //            fetchUsers.add(new FetchUsers(user.getName(),user.getEmail()));
 //        }
-//
 //        return fetchUsers; // 모든 사용자 목록을 조회
         return userMapper.fetchAllUsers();
     }
@@ -40,6 +37,7 @@ public class UserService {
     }
 
     public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+//        userRepository.deleteById(id);
+        userMapper.deleteById(id);
     }
 }

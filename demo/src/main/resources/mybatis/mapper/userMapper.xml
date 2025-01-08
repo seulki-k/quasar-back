@@ -3,8 +3,11 @@
 <mapper namespace="com.example.demo.mapper.UserMapper">
 
     <select id="fetchAllUsers" resultType="com.example.demo.dto.FetchUsers">
-        SELECT name, email
+        SELECT id,name, email
         FROM users
     </select>
 
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
 </mapper>

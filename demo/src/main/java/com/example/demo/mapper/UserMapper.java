@@ -10,4 +10,6 @@ import java.util.List;
 public interface UserMapper {
 //    @Select("select name,email from users")
     List<FetchUsers> fetchAllUsers();
+
+    void deleteById(Long id);
 }
