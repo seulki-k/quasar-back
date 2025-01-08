@@ -40,4 +40,8 @@ public class UserService {
 //        userRepository.deleteById(id);
         userMapper.deleteById(id);
     }
+
+    public void updateUser(FetchUsers fetchUsers) {
+        userMapper.updateUser(fetchUsers);
+    }
 }

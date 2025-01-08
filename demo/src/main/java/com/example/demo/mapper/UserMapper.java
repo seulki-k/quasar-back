@@ -1,5 +1,6 @@
 package com.example.demo.mapper;
 
+import com.example.demo.dao.Users;
 import com.example.demo.dto.FetchUsers;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -12,4 +13,6 @@ public interface UserMapper {
     List<FetchUsers> fetchAllUsers();
 
     void deleteById(Long id);
+
+    void updateUser(FetchUsers fetchUsers);
 }

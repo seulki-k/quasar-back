@@ -10,4 +10,7 @@
     <delete id="deleteById" parameterType="Long">
         DELETE FROM users WHERE id = #{id}
     </delete>
+    <update id="updateUser" parameterType="com.example.demo.dto.FetchUsers">
+        update users set  name =#{name} , email =#{email} WHERE id = #{id}
+    </update>
 </mapper>

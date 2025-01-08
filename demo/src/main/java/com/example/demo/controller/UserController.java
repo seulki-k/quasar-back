@@ -45,6 +45,16 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @Operation(summary = "사용자 변경")
+    @PutMapping("/users")
+    public ResponseEntity<?> updateUser(@RequestBody FetchUsers fetchUsers){
+        try {
+            userService.updateUser(fetchUsers);
+            return ResponseEntity.ok("변경 완료");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     @Operation(summary = "사용자 삭제")
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id){
