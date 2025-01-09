@@ -3,7 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.ApiResponse;
 import com.example.demo.dto.CreateUserDto;
-import com.example.demo.dto.FetchUsersDto;
+import com.example.demo.dto.UserDto;
 import com.example.demo.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -54,10 +54,10 @@ public class UserController {
 
     @Operation(summary = "사용자 변경")
     @PutMapping("/users")
-    public ResponseEntity<ApiResponse<?>> updateUser(@RequestBody FetchUsersDto fetchUsersDto) {
+    public ResponseEntity<ApiResponse<?>> updateUser(@RequestBody UserDto userDto) {
         ApiResponse<String> response = new ApiResponse<>();
         try {
-            userService.updateUser(fetchUsersDto);
+            userService.updateUser(userDto);
             response.setMessage("변경 완료");
             response.setData("변경 완료");
             return ResponseEntity.ok(response);

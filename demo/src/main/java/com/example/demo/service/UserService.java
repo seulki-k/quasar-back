@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.Users;
 import com.example.demo.dto.CreateUserDto;
-import com.example.demo.dto.FetchUsersDto;
+import com.example.demo.dto.UserDto;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class UserService {
     this.userMapper = userMapper;
   }
 
-  public List<FetchUsersDto> getAllUsers() {
+  public List<UserDto> getAllUsers() {
 //        List<Users> users = userRepository.findAll();
 //        List<FetchUsers> fetchUsers = new ArrayList<>();
 //        for (Users user : users) {
@@ -57,15 +57,15 @@ public class UserService {
     }
   }
 
-  public void updateUser(FetchUsersDto fetchUsersDto) {
-    if (fetchUsersDto.getName().equals("") && fetchUsersDto.getEmail().equals("")) {
+  public void updateUser(UserDto userDto) {
+    if (userDto.getName().equals("") && userDto.getEmail().equals("")) {
       throw new IllegalArgumentException("이름 및 이메일을 입력해주세요.");
-    } else if (fetchUsersDto.getName().equals("")) {
+    } else if (userDto.getName().equals("")) {
       throw new IllegalArgumentException("이름을 입력해주세요.");
-    } else if (fetchUsersDto.getEmail().equals("")) {
+    } else if (userDto.getEmail().equals("")) {
       throw new IllegalArgumentException("이메일을 입력해주세요.");
     } else {
-      userMapper.updateUser(fetchUsersDto);
+      userMapper.updateUser(userDto);
     }
 
   }
