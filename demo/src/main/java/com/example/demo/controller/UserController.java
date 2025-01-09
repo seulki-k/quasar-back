@@ -1,21 +1,21 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.dao.Users;
-import com.example.demo.dto.FetchUsers;
+import com.example.demo.dto.ApiResponse;
+import com.example.demo.dto.CreateUserDto;
+import com.example.demo.dto.FetchUsersDto;
 import com.example.demo.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.websocket.server.PathParam;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Tag(name="사용자 정보", description = "사용자 CRUD 구성")
 @RestController
+@RequestMapping("/api")
 public class UserController {
     private final UserService userService;
 
@@ -37,32 +37,48 @@ public class UserController {
 
     @Operation(summary = "사용자 추가")
     @PostMapping("/users")
-    public ResponseEntity<?> addUser(@RequestBody Users users){
+    public ResponseEntity<ApiResponse<?>> addUser(@Valid @RequestBody CreateUserDto createUserDto){
+
+        ApiResponse<String> response = new ApiResponse<>();
         try {
-            userService.addUser(users);
-            return ResponseEntity.ok("추가 완료");
+            userService.addUser(createUserDto);
+            response.setMessage("추가 완료");
+            response.setData("유저 등록 성공");
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            response.setError("유저 추가 실패");
+            response.setMessage(e.getMessage());
+            return ResponseEntity.badRequest().body(response);
         }
     }
     @Operation(summary = "사용자 변경")
     @PutMapping("/users")
-    public ResponseEntity<?> updateUser(@RequestBody FetchUsers fetchUsers){
+    public ResponseEntity<ApiResponse<?>> updateUser(@RequestBody FetchUsersDto fetchUsersDto){
+        ApiResponse<String> response = new ApiResponse<>();
         try {
-            userService.updateUser(fetchUsers);
-            return ResponseEntity.ok("변경 완료");
+            userService.updateUser(fetchUsersDto);
+            response.setMessage("변경 완료");
+            response.setData("변경 완료");
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            response.setError("유저 변경 실패");
+            response.setMessage(e.getMessage());
+            return ResponseEntity.badRequest().body(response);
         }
     }
     @Operation(summary = "사용자 삭제")
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id){
+    public ResponseEntity<ApiResponse<?>> deleteUser(@PathVariable Long id){
+        ApiResponse<String> response = new ApiResponse<>();
         try {
             userService.deleteUser(id);
-            return ResponseEntity.ok("삭제 완료");
+            response.setMessage("삭제 완료");
+            response.setData("삭제 완료");
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            response.setMessage("삭제 실패");
+            response.setData("삭제 실패");
+            return ResponseEntity.badRequest().body(response);
         }
 
     }
