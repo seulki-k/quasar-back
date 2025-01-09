@@ -10,8 +10,8 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class CreateUserDto {
 
-    @Schema(description = "유저 이름")
-    private final String name;
-    @Schema(description = "유저 이메일")
-    private final String email;
+  @Schema(description = "유저 이름")
+  private final String name;
+  @Schema(description = "유저 이메일")
+  private final String email;
 }

@@ -13,13 +13,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@Tag(name="사용자 정보", description = "사용자 CRUD 구성")
+@Tag(name = "사용자 정보", description = "사용자 CRUD 구성")
 @RestController
 @RequestMapping("/api")
 public class UserController {
     private final UserService userService;
 
-    
+
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
@@ -37,7 +37,7 @@ public class UserController {
 
     @Operation(summary = "사용자 추가")
     @PostMapping("/users")
-    public ResponseEntity<ApiResponse<?>> addUser(@Valid @RequestBody CreateUserDto createUserDto){
+    public ResponseEntity<ApiResponse<?>> addUser(@Valid @RequestBody CreateUserDto createUserDto) {
 
         ApiResponse<String> response = new ApiResponse<>();
         try {
@@ -51,9 +51,10 @@ public class UserController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+
     @Operation(summary = "사용자 변경")
     @PutMapping("/users")
-    public ResponseEntity<ApiResponse<?>> updateUser(@RequestBody FetchUsersDto fetchUsersDto){
+    public ResponseEntity<ApiResponse<?>> updateUser(@RequestBody FetchUsersDto fetchUsersDto) {
         ApiResponse<String> response = new ApiResponse<>();
         try {
             userService.updateUser(fetchUsersDto);
@@ -66,9 +67,10 @@ public class UserController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+
     @Operation(summary = "사용자 삭제")
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<ApiResponse<?>> deleteUser(@PathVariable Long id){
+    public ResponseEntity<ApiResponse<?>> deleteUser(@PathVariable Long id) {
         ApiResponse<String> response = new ApiResponse<>();
         try {
             userService.deleteUser(id);

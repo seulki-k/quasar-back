@@ -17,24 +17,24 @@ import lombok.ToString;
 @ToString
 public class ApiResponse<T> {
 
-    @Schema(description = "타임스탬프")
-    private final String timestamp = LocalDateTime.now(ZoneId.of("Asia/Seoul")).toString();
+  @Schema(description = "타임스탬프")
+  private final String timestamp = LocalDateTime.now(ZoneId.of("Asia/Seoul")).toString();
 
-    @Schema(description = "트랜잭션 아이디")
-    private final UUID txId = UUID.randomUUID();
+  @Schema(description = "트랜잭션 아이디")
+  private final UUID txId = UUID.randomUUID();
 
-    @Schema(description = "에러")
-    private String error;
+  @Schema(description = "에러")
+  private String error;
 
-    @Schema(description = "메시지")
-    private String message;
+  @Schema(description = "메시지")
+  private String message;
 
-    @Schema(description = "데이터")
-    private T data;
+  @Schema(description = "데이터")
+  private T data;
 
-    // 에러응답과 형식을 맞추기 위한 변수
-    @Schema(description = "입력값 에러")
-    private List<ParamError> paramErrors;
+  // 에러응답과 형식을 맞추기 위한 변수
+  @Schema(description = "입력값 에러")
+  private List<ParamError> paramErrors;
 
 }
 
