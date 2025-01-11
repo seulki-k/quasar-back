@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+  <select id="fetchAllUsers" resultType="com.example.demo.dto.UserDto">
+    SELECT id,name, email
+    FROM users
+  </select>
+
+  <delete id="deleteById" parameterType="Long">
+    DELETE FROM users WHERE id = #{id}
+  </delete>
+  <update id="updateUser" parameterType="com.example.demo.dto.UserDto">
+    update users set name =#{name} , email =#{email} WHERE id = #{id}
+  </update>
+</mapper>
