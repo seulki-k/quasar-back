@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-  // Validation 오류 처리
+  // (@Valid or @Validated) Validation 오류 처리
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ApiResponse<Void>> handleValidationException(
       MethodArgumentNotValidException ex) {
