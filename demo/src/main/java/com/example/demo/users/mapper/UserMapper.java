@@ -1,6 +1,6 @@
-package com.example.demo.mapper;
+package com.example.demo.users.mapper;
 
-import com.example.demo.dto.FetchUserDto;
+import com.example.demo.users.dto.FetchUserDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,7 +12,7 @@ public interface UserMapper {
   List<FetchUserDto> fetchAllUsers();
 
   // 실행한 쿼리의 수 출력
-  int deleteById(Long id);
+  void deleteById(Long id);
 
   void updateUser(FetchUserDto fetchUserDto);
 }

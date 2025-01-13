@@ -1,13 +1,14 @@
-package com.example.demo.controller;
+package com.example.demo.users.controller;
 
 
-import com.example.demo.dto.ApiResponse;
-import com.example.demo.dto.CreateUserDto;
-import com.example.demo.dto.FetchUserDto;
-import com.example.demo.service.UserService;
+import com.example.demo.users.dto.ApiResponse;
+import com.example.demo.users.dto.CreateUserDto;
+import com.example.demo.users.dto.FetchUserDto;
+import com.example.demo.users.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,11 @@ public class UserController {
 
   @Operation(summary = "사용자 전체 조회")
   @GetMapping(path = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> getAllUsers() {
-    return ResponseEntity.ok(userService.getAllUsers()); // 모든 사용자 데이터를 반환
+  public ResponseEntity<ApiResponse<List<FetchUserDto>>> getAllUsers() {
+    ApiResponse<List<FetchUserDto>> response = new ApiResponse<>();
+    response.setMessage("조회 완료");
+    response.setData(userService.getAllUsers());
+    return ResponseEntity.ok(response); // 모든 사용자 데이터를 반환
   }
 
   @Operation(summary = "사용자 추가")

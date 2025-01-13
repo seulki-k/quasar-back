@@ -1,7 +1,7 @@
 package com.example.demo.config;
 
-import com.example.demo.dto.ApiResponse;
-import com.example.demo.dto.ParamError;
+import com.example.demo.users.dto.ApiResponse;
+import com.example.demo.users.dto.ParamError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -22,13 +22,11 @@ public class GlobalExceptionHandler {
       MethodArgumentNotValidException ex) {
     BindingResult bindingResult = ex.getBindingResult();
 
-    // 필드 오류 리스트 생성
     List<ParamError> paramErrors = bindingResult.getFieldErrors()
         .stream()
         .map(this::mapFieldErrorToParamError)
         .collect(Collectors.toList());
 
-    // API 응답 구성
     ApiResponse<Void> response = new ApiResponse<>();
     response.setError("VALIDATION_ERROR");
     response.setMessage("입력값 검증에 실패하였습니다.");

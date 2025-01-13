@@ -1,9 +1,9 @@
-package com.example.demo.service;
+package com.example.demo.users.service;
 
-import com.example.demo.dto.CreateUserDto;
-import com.example.demo.dto.FetchUserDto;
-import com.example.demo.mapper.UserMapper;
-import com.example.demo.dao.UserRepository;
+import com.example.demo.users.dto.CreateUserDto;
+import com.example.demo.users.dto.FetchUserDto;
+import com.example.demo.users.mapper.UserMapper;
+import com.example.demo.users.dao.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,15 +25,10 @@ public class UserService {
   }
 
   public void deleteUser(Long id) {
-    int row = userMapper.deleteById(id);
-    if (row == 0) {
-      throw new IllegalArgumentException("선택된 유저가 없습니다.");
-    } else {
-      System.out.println("User with ID " + id + " deleted successfully.");
-    }
+    userMapper.deleteById(id);
   }
 
   public void updateUser(FetchUserDto fetchUserDto) {
-      userMapper.updateUser(fetchUserDto);
+    userMapper.updateUser(fetchUserDto);
   }
 }

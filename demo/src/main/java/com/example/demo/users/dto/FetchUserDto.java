@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.users.dto;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
 public class FetchUserDto {
   @Schema(description = "유저 식별 번호 PK")
   private Long id;

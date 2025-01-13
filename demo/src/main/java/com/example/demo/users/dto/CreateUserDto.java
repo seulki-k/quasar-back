@@ -1,13 +1,12 @@
-package com.example.demo.dto;
+package com.example.demo.users.dto;
 
-import com.example.demo.domain.Users;
+import com.example.demo.users.domain.Users;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
 public class CreateUserDto {
 
   @NotBlank(message = "이름을 입력하세요")
